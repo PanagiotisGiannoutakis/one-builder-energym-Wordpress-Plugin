@@ -1,0 +1,159 @@
+/* style.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Πολύ σημαντικό για το horizontal scroll */
+}
+
+/* --- General settings for product container (Flexbox) --- */
+.my-custom-products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 100vw;
+    justify-content: center;
+}
+
+/* --- Ensure the grid itself spans the entire viewport width --- */
+.my-custom-products-grid {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    max-width: none;
+    box-sizing: border-box;
+}
+
+/* --- Settings for each individual product (column width) --- */
+.my-custom-product-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+/* Column width calculation for Flexbox */
+/* The formula: (100% / columns) - gap_reduction_for_flex_basis */
+
+/* For 1 column */
+.my-custom-products-columns-1 .my-custom-product-item {
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
+/* For 2 columns */
+.my-custom-products-columns-2 .my-custom-product-item {
+    flex-basis: calc(50% - 10px);
+    max-width: calc(50% - 10px);
+}
+
+/* For 3 columns */
+.my-custom-products-columns-3 .my-custom-product-item {
+    flex-basis: calc(33.333% - 13.333px); /* This rule will now always apply for 3 columns */
+    max-width: calc(33.333% - 13.333px);
+}
+
+/* For 4 columns */
+.my-custom-products-columns-4 .my-custom-product-item {
+    flex-basis: calc(25% - 15px);
+    max-width: calc(25% - 15px);
+}
+
+/* For 5 columns */
+.my-custom-products-columns-5 .my-custom-product-item {
+    flex-basis: calc(20% - 16px);
+    max-width: calc(20% - 16px);
+}
+
+/* For 6 columns */
+.my-custom-products-columns-6 .my-custom-product-item {
+    flex-basis: calc(16.666% - 16.666px);
+    max-width: calc(16.666% - 16.666px);
+}
+
+
+/* --- Media Queries for Responsive Design (MODIFIED) --- */
+/* We remove '.my-custom-products-columns-3' from these rules */
+@media (max-width: 768px) { /* When screen is up to 768px (e.g. tablets) */
+    /* Only these specific column classes will change to 2 columns here */
+    .my-custom-products-columns-4 .my-custom-product-item,
+    .my-custom-products-columns-5 .my-custom-product-item,
+    .my-custom-products-columns-6 .my-custom-product-item {
+        flex-basis: calc(50% - 10px); /* 2 columns on tablets */
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 480px) { /* When screen is up to 480px (e.g. mobile) */
+    /* Only these specific column classes will change to 1 column here */
+    .my-custom-products-columns-2 .my-custom-product-item,
+    .my-custom-products-columns-4 .my-custom-product-item,
+    .my-custom-products-columns-5 .my-custom-product-item,
+    .my-custom-products-columns-6 .my-custom-product-item {
+        flex-basis: 100%; /* 1 column on mobile */
+        max-width: 100%;
+    }
+}
+
+/* ... (Remaining styling for image, title, hover effects) ... */
+
+/* --- Styling για το container της εικόνας --- */
+.my-custom-product-image {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+/* Styling για το link γύρω από την εικόνα */
+.my-custom-product-image a {
+    text-decoration: none;
+    display: block;
+    line-height: 0;
+}
+
+/* Styling για την ίδια την εικόνα */
+.my-custom-product-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Styling για τον τίτλο του προϊόντος */
+.my-custom-product-title {
+    font-size: 1.2em;
+    margin: 10px 0 5px 0;
+    line-height: 1.3;
+}
+
+/* Styling για το link του τίτλου */
+.my-custom-product-title a {
+    color: #333; /* Αρχικό χρώμα τίτλου */
+    text-decoration: none; /* Αφαιρεί την υπογράμμιση */
+    transition: color 0.2s ease-in-out; /* Ομαλή μετάβαση για το hover */
+}
+
+/* Hover effect για ολόκληρο το στοιχείο προϊόντος */
+.my-custom-product-item:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+/* Hover effect για το link του τίτλου */
+.my-custom-product-title a:hover {
+    color: #0056b3; /* Αλλαγή χρώματος τίτλου στο hover */
+}
+
